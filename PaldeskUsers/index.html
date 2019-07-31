@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Paldesk Users</title>
+        
+        <style>
+            body {
+                background-color: #f4f4f4;
+                color: #555555;
+                font-family: Verdana, Geneva, sans-serif;
+            }
+        </style>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                    
+                    var paldesk = [];
+                    var tawkTo = [];
+                    var others = [];
+                    var liveChat = [];
+                    var sitesLength = [];
+
+                    var apache = [];
+                    var nginx = [];
+                    var iis = [];
+                    var otherServers = [];
+
+                    var wordPress = [];
+                    var joomla = [];
+                    var drupal = [];
+                    var otherCMS = [];
+
+                    var facebook = [];
+                    var carousel = [];
+                    var googlePlus = [];
+                    var otherWidgets = [];
+
+                    var php = [];
+                    var node = [];
+                    var python = [];
+                    var java = [];
+                    var otherLanguages = [];
+
+                    var unknown = [];
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                        
+                        var response = JSON.parse(xhttp.responseText);
+                        var sites = response.sites;
+
+                        for(var i = 0; i < sites.length; i++){
+                            let apps = sites[i]['applications'];
+                            sitesLength.push(i);
+                            for(var j = 0; j < apps.length; j++){
+                                for(var k = 0; k < sites[i]['applications'][j]['categories'].length; k++){
+                                    
+                                    if(sites[i]['applications'][j]['categories'][k]['52'] == "Live Chat"){
+                                        if(sites[i]['applications'][j].name == "Paldesk"){
+                                            paldesk.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Tawk.to"){
+                                            tawkTo.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "LiveChat"){
+                                            liveChat.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name != "Paldesk" && sites[i]['applications'][j].name != "Tawk.to" && sites[i]['applications'][j].name != "LiveChat"){
+                                            others.push(sites[i]['applications'][j].name);
+                                        }
+                                    }
+                                    else if(sites[i]['applications'][j]['categories'][k]['22'] == "Web Servers"){
+                                        if(sites[i]['applications'][j].name == "Apache"){
+                                            apache.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Nginx"){
+                                            nginx.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "IIS"){
+                                            iis.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name != "Apache" && sites[i]['applications'][j].name != "Nginx" && sites[i]['applications'][j].name != "IIS"){
+                                            otherServers.push(sites[i]['applications'][j].name);
+                                        }
+                                    }
+                                    else if(sites[i]['applications'][j]['categories'][k]['1'] == "CMS"){
+                                        if(sites[i]['applications'][j].name == "WordPress"){
+                                            wordPress.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Joomla"){
+                                            joomla.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Drupal"){
+                                            drupal.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name != "WordPress" && sites[i]['applications'][j].name != "Joomla" && sites[i]['applications'][j].name != "Drupal"){
+                                            otherCMS.push(sites[i]['applications'][j].name);
+                                        }
+                                    }
+                                    else if(sites[i]['applications'][j]['categories'][k]['5'] == "Widgets"){
+                                        if(sites[i]['applications'][j].name == "Facebook"){
+                                            facebook.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "OWL Carousel"){
+                                            carousel.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Google Plus"){
+                                            googlePlus.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name != "Facebook" && sites[i]['applications'][j].name != "OWL Carousel" && sites[i]['applications'][j].name != "Google Plus"){
+                                            otherWidgets.push(sites[i]['applications'][j].name);
+                                        }
+                                    }
+                                    else if(sites[i]['applications'][j]['categories'][k]['27'] == "Programming Languages"){
+                                        if(sites[i]['applications'][j].name == "PHP"){
+                                            php.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Node.js"){
+                                            node.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Python"){
+                                            python.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name == "Java"){
+                                            java.push(sites[i]['applications'][j].name);
+                                        }
+                                        else if(sites[i]['applications'][j].name != "PHP" && sites[i]['applications'][j].name != "Node.js" && sites[i]['applications'][j].name != "Python" && sites[i]['applications'][j].name != "Java"){
+                                            otherLanguages.push(sites[i]['applications'][j].name);
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        for(var i = 0; i < sites.length; i++){
+                            if(sites[i]['urls'][Object.keys(sites[i]['urls'])]['status'] != 200){
+                                unknown.push(sites[i]['urls'][Object.keys(sites[i]['urls'])]['status']);
+                            }
+                        }
+                                     
+                        } 
+                    };
+                    
+                    xhttp.open("GET", "applications.json", true);
+                    xhttp.send();
+
+
+                    google.charts.load('current', {'packages':['corechart']});
+                    
+
+                    google.charts.setOnLoadCallback(drawChatUnknown);
+                    google.charts.setOnLoadCallback(drawChatNone);
+                    google.charts.setOnLoadCallback(drawChat);
+
+                    google.charts.setOnLoadCallback(drawServerUnknown);
+                    google.charts.setOnLoadCallback(drawServerNone);
+                    google.charts.setOnLoadCallback(drawServer);
+
+                    google.charts.setOnLoadCallback(drawCMSUnknown);
+                    google.charts.setOnLoadCallback(drawCMSNone);
+                    google.charts.setOnLoadCallback(drawCMS);
+
+                    google.charts.setOnLoadCallback(drawWidgetUnknown);
+                    google.charts.setOnLoadCallback(drawWidgetNone);
+                    google.charts.setOnLoadCallback(drawWidget);
+
+                    google.charts.setOnLoadCallback(drawLanguageUnknown);
+                    google.charts.setOnLoadCallback(drawLanguageNone);
+                    google.charts.setOnLoadCallback(drawLanguage);
+
+                    function drawChatUnknown() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Paldesk', paldesk.length],
+                            ['LiveChat', liveChat.length],
+                            ['Tawk.to', tawkTo.length],
+                            ['Others', others.length],
+                            ['Unknown', unknown.length],
+                            ['None', (sitesLength.length - paldesk.length - liveChat.length - tawkTo.length - others.length - unknown.length)]
+                            ]);
+
+                            var options = {'title':'Live Chat Usage, total sites: ' + sitesLength.length, 'is3D': true, 'width':450, 'height':400};
+
+                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                            chart.draw(data, options);
+                    }
+
+                    function drawChatNone(){
+                        var data2 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Paldesk', paldesk.length],
+                            ['LiveChat', liveChat.length],
+                            ['Tawk.to', tawkTo.length],
+                            ['Others', others.length],
+                            ['None', sitesLength.length - paldesk.length - liveChat.length - tawkTo.length - others.length - unknown.length]
+                            ]);
+
+                            var options2 = {'title':'Live Chat Usage (without unknowns), total sites: ' + (sitesLength.length - unknown.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+                            chart2.draw(data2, options2);
+                    }
+
+                    function drawChat(){
+                        var data3 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Paldesk', paldesk.length],
+                            ['LiveChat', liveChat.length],
+                            ['Tawk.to', tawkTo.length],
+                            ['Others', others.length]
+                            ]);
+
+                            var options3 = {'title':'Live Chat Usage (only the ones with a live chat), total sites: ' + (paldesk.length + tawkTo.length + liveChat.length + others.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
+                            chart3.draw(data3, options3);
+
+                    }
+
+                    function drawServerUnknown(){
+                        var data4 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Apache', apache.length],
+                            ['Nginx', nginx.length],
+                            ['IIS', iis.length],
+                            ['Others', otherServers.length],
+                            ['Unknown', unknown.length],
+                            ['None', sitesLength.length - apache.length - nginx.length - iis.length - otherServers.length - unknown.length]
+                            ]);
+
+                            var options4 = {'title':'Web Servers Usage, total sites: ' + sitesLength.length, 'is3D': true, 'width':450, 'height':400};
+
+                            var chart4 = new google.visualization.PieChart(document.getElementById('piechart4'));
+                            chart4.draw(data4, options4);
+
+                    }
+
+                    function drawServerNone(){
+                        var data5 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Apache', apache.length],
+                            ['Nginx', nginx.length],
+                            ['IIS', iis.length],
+                            ['Others', otherServers.length],
+                            ['None', sitesLength.length - apache.length - nginx.length - iis.length - otherServers.length - unknown.length]
+                            ]);
+
+                            var options5 = {'title':'Web Servers Usage (without unknowns), total sites: ' + (sitesLength.length - unknown.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart5 = new google.visualization.PieChart(document.getElementById('piechart5'));
+                            chart5.draw(data5, options5);
+
+                    }
+
+                    function drawServer(){
+                        var data6 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Apache', apache.length],
+                            ['Nginx', nginx.length],
+                            ['IIS', iis.length],
+                            ['Others', otherServers.length]
+                            ]);
+
+                            var options6 = {'title':'Web Servers Usage (only the ones with a web server), total sites: ' + (apache.length + nginx.length + iis.length + otherServers.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart6 = new google.visualization.PieChart(document.getElementById('piechart6'));
+                            chart6.draw(data6, options6);
+                    }
+
+                    function drawCMSUnknown(){
+                        var data7 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['WordPress', wordPress.length],
+                            ['Joomla', joomla.length],
+                            ['Drupal', drupal.length],
+                            ['Others', otherCMS.length],
+                            ['Unknown', unknown.length],
+                            ['None', sitesLength.length - wordPress.length - joomla.length - drupal.length - otherCMS.length - unknown.length]
+                            ]);
+
+                            var options7 = {'title':'CMS Usage, total sites: ' + sitesLength.length, 'is3D': true, 'width':450, 'height':400};
+
+                            var chart7 = new google.visualization.PieChart(document.getElementById('piechart7'));
+                            chart7.draw(data7, options7);
+                    }
+
+                    function drawCMSNone(){
+                        var data8 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['WordPress', wordPress.length],
+                            ['Joomla', joomla.length],
+                            ['Drupal', drupal.length],
+                            ['Others', otherCMS.length],
+                            ['None', sitesLength.length - apache.length - nginx.length - iis.length - otherServers.length - unknown.length]
+                            ]);
+
+                            var options8 = {'title':'CMS Usage (without unknowns), total sites: ' + (sitesLength.length - unknown.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart8 = new google.visualization.PieChart(document.getElementById('piechart8'));
+                            chart8.draw(data8, options8);
+                    }
+
+                    function drawCMS(){
+                        var data9 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['WordPress', wordPress.length],
+                            ['Joomla', joomla.length],
+                            ['Drupal', drupal.length],
+                            ['Others', otherCMS.length]
+                            ]);
+
+                            var options9 = {'title':'CMS Usage (only the ones with a CMS), total sites: ' + (wordPress.length + joomla.length + drupal.length + otherCMS.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart9 = new google.visualization.PieChart(document.getElementById('piechart9'));
+                            chart9.draw(data9, options9);
+                    }
+
+                    function drawWidgetUnknown() {
+                        var data10 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Facebook', facebook.length],
+                            ['OWL Carousel', carousel.length],
+                            ['Google Plus', googlePlus.length],
+                            ['Others', otherWidgets.length],
+                            ['Unknown', unknown.length],
+                            ['None', (sitesLength.length - facebook.length - carousel.length - googlePlus.length - otherWidgets.length - unknown.length)]
+                            ]);
+
+                            var options10 = {'title':'Widgets Usage, total sites: ' + sitesLength.length, 'is3D': true, 'width':450, 'height':400};
+
+                            var chart10 = new google.visualization.PieChart(document.getElementById('piechart10'));
+                            chart10.draw(data10, options10);
+                    }
+
+                    function drawWidgetNone(){
+                        var data11 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Facebook', facebook.length],
+                            ['OWL Carousel', carousel.length],
+                            ['Google Plus', googlePlus.length],
+                            ['Others', otherWidgets.length],
+                            ['None', sitesLength.length - facebook.length - carousel.length - googlePlus.length - otherWidgets.length - unknown.length]
+                            ]);
+
+                            var options11 = {'title':'Widgets Usage (without unknowns), total sites: ' + (sitesLength.length - unknown.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart11 = new google.visualization.PieChart(document.getElementById('piechart11'));
+                            chart11.draw(data11, options11);
+                    }
+
+                    function drawWidget(){
+                        var data12 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Facebook', facebook.length],
+                            ['OWL Carousel', carousel.length],
+                            ['Google Plus', googlePlus.length],
+                            ['Others', otherWidgets.length]
+                            ]);
+
+                            var options12 = {'title':'Widgets Usage (only the ones with a widget), total sites: ' + (facebook.length + carousel.length + googlePlus.length + otherWidgets.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart12 = new google.visualization.PieChart(document.getElementById('piechart12'));
+                            chart12.draw(data12, options12);
+
+                    }
+
+                    function drawLanguageUnknown() {
+                        var data13 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['PHP', php.length],
+                            ['Node.js', node.length],
+                            ['Python', python.length],
+                            ['Java', java.length],
+                            ['Others', otherLanguages.length],
+                            ['Unknown', unknown.length],
+                            ['None', (sitesLength.length - php.length - node.length - python.length - java.length - otherLanguages.length - unknown.length)]
+                            ]);
+
+                            var options13 = {'title':'Programming Languages Usage, total sites: ' + sitesLength.length, 'is3D': true, 'width':450, 'height':400};
+
+                            var chart13 = new google.visualization.PieChart(document.getElementById('piechart13'));
+                            chart13.draw(data13, options13);
+                    }
+
+                    function drawLanguageNone(){
+                        var data14 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['PHP', php.length],
+                            ['Node.js', node.length],
+                            ['Python', python.length],
+                            ['Java', java.length],
+                            ['Others', otherLanguages.length],
+                            ['None', sitesLength.length - php.length - node.length - python.length - java.length - otherLanguages.length - unknown.length]
+                            ]);
+
+                            var options14 = {'title':'Programming Languages Usage (without unknowns), total sites: ' + (sitesLength.length - unknown.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart14 = new google.visualization.PieChart(document.getElementById('piechart14'));
+                            chart14.draw(data14, options14);
+                    }
+
+                    function drawLanguage(){
+                        var data15 = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['PHP', php.length],
+                            ['Node.js', node.length],
+                            ['Python', python.length],
+                            ['Java', java.length],
+                            ['Others', otherLanguages.length]
+                            ]);
+
+                            var options15 = {'title':'Programming Languages Usage (only the ones with a language), total sites: ' + (php.length + node.length + python.length + java.length + otherLanguages.length), 'is3D': true, 'width':450, 'height':400};
+
+                            var chart15 = new google.visualization.PieChart(document.getElementById('piechart15'));
+                            chart15.draw(data15, options15);
+
+                    }
+
+                    /*for(var i = 0; i < sites.length; i++){
+                            sitesLength.push(i);
+                            let apps = sites[i].applications;
+                            for(var j = 0; j < apps.length; j++){
+                                if(apps[j].name == "Paldesk"){
+                                    paldesk.push(apps[j].name);
+                                }
+                                else if(apps[j].name == "Tawk.to"){
+                                    tawkTo.push(apps[j].name);
+                                }
+                                else if(apps[j].name == "LiveChat"){
+                                    liveChat.push(apps[j].name);
+                                }
+                            }
+                            
+                        }*/
+                </script>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				
+			</ul>
+        </nav>
+		<div class="background">
+			<div>
+				<h1>Statistics</h1>
+            </div>
+            <table>
+                <tr>
+                    <td><div id = "piechart"></div></td>
+                    <td><div id = "piechart2"></div></td>
+                    <td><div id = "piechart3"></div></td>
+                </tr>
+                <tr>
+                    <td><div id = "piechart4"> </div></td>
+                    <td><div id = "piechart5"></div></td>
+                    <td><div id = "piechart6"></div></td>
+                </tr>
+                <tr>
+                    <td><div id = "piechart7"> </div></td>
+                    <td><div id = "piechart8"></div></td>
+                    <td><div id = "piechart9"></div></td>
+                </tr>
+                <tr>
+                    <td><div id = "piechart10"></div></td>
+                    <td><div id = "piechart11"></div></td>
+                    <td><div id = "piechart12"></div></td>
+                </tr>
+                <tr>
+                    <td><div id = "piechart13"></div></td>
+                    <td><div id = "piechart14"></div></td>
+                    <td><div id = "piechart15"></div></td>
+                </tr>
+            </table>
+            
+        </div>
+    </body>
+
+    
